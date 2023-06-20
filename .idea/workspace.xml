@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7d5c317-0cfd-4d52-b94e-10a9efcb3fc1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/JackBoxGames.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/JackBox2CoreForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreEditor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreIds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/utils/SwfEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/Library.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/test/java/jackbox/editor/core/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/test/java/jackbox/editor/core/LibraryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/JackBox2CoreForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/JackBox2CoreForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreIds.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreIds.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -235,7 +230,7 @@
       <workItem from="1687244861524" duration="81000" />
       <workItem from="1687244964779" duration="556000" />
       <workItem from="1687245661558" duration="356000" />
-      <workItem from="1687246038476" duration="14736000" />
+      <workItem from="1687246038476" duration="21668000" />
     </task>
     <servers />
   </component>
