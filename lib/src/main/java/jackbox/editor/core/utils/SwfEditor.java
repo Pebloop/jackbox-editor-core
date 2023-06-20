@@ -7,9 +7,11 @@ import com.jpexs.decompiler.flash.SWF;
 import com.jpexs.decompiler.flash.exporters.ImageExporter;
 import com.jpexs.decompiler.flash.exporters.modes.ImageExportMode;
 import com.jpexs.decompiler.flash.exporters.settings.ImageExportSettings;
+import com.jpexs.decompiler.flash.importers.ImageImporter;
 import com.jpexs.decompiler.flash.tags.DefineBitsLossless2Tag;
 import com.jpexs.decompiler.flash.tags.DefineBitsLosslessTag;
 import com.jpexs.decompiler.flash.tags.DefineEditTextTag;
+import com.jpexs.decompiler.flash.tags.base.ImageTag;
 import com.jpexs.decompiler.flash.types.ALPHABITMAPDATA;
 
 import java.io.*;
@@ -135,5 +137,35 @@ public class SwfEditor {
             }
         }
         return res.get();
+    }
+
+    public void setDefineBitsLosslessTag(String id, byte[] data) {
+        swf.getTags().forEach(tag -> {
+            if (!Objects.equals(tag.getTagName(), "DefineBitsLossless")
+            && !Objects.equals(tag.getTagName(), "DefineBitsLossless2")) return;
+
+            if (tag.getName().equals(id)) {
+                ImageImporter importer = new ImageImporter();
+
+                if (tag instanceof DefineBitsLosslessTag) {
+                    DefineBitsLosslessTag defineBitsLosslessTag = (DefineBitsLosslessTag) tag;
+                    try {
+                        importer.importImage(defineBitsLosslessTag, data);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else if (tag instanceof DefineBitsLossless2Tag) {
+                    DefineBitsLossless2Tag defineBitsLossless2Tag = (DefineBitsLossless2Tag) tag;
+                    try {
+                        importer.importImage(defineBitsLossless2Tag, data);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                tag.setModified(true);
+                return;
+            }
+        });
     }
 }

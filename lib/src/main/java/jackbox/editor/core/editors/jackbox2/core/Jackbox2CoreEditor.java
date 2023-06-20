@@ -84,6 +84,36 @@ public class Jackbox2CoreEditor {
     }
 
     /**
+     * Get the setting image stored in the GamePicker.swf file
+     *
+     * @return The image
+     */
+    public byte[] getGamePickerImageSettings() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_SETTINGS);
+    }
+
+    /**
+     * Get the instruction image stored in the GamePicker.swf file
+     *
+     * @return The image
+     */
+    public byte[] getGamePickerImageInstructions() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTIONS);
+    }
+
+    /**
+     * Get the instruction2 image stored in the GamePicker.swf file
+     *
+     * @return The image
+     */
+    public byte[] getGamePickerImageInstructions2() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTION2);
+    }
+
+    /**
      * Modify the GamePicker.swf file
      *
      * @param json The data in a json format
@@ -115,19 +145,40 @@ public class Jackbox2CoreEditor {
         return swfEditor.apply();
     }
 
-    public byte[] getGamePickerImageSettings() throws Exception {
+    /**
+     * Modify the setting image of the GamePicker.swf file
+     *
+     * @param image The image
+     * @return The modified file
+     */
+    public byte[] modifyGamePickerImageSettings(byte[] image) throws Exception {
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
-        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_SETTINGS);
+        swfEditor.setDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_SETTINGS, image);
+        return swfEditor.apply();
     }
 
-    public byte[] getGamePickerImageInstructions() throws Exception {
+    /**
+     * Modify the instruction image of the GamePicker.swf file
+     *
+     * @param image The image
+     * @return The modified file
+     */
+    public byte[] modifyGamePickerImageInstructions(byte[] image) throws Exception {
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
-        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTIONS);
+        swfEditor.setDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTIONS, image);
+        return swfEditor.apply();
     }
 
-    public byte[] getGamePickerImageInstructions2() throws Exception {
+    /**
+     * Modify the instruction2 image of the GamePicker.swf file
+     *
+     * @param image The image
+     * @return The modified file
+     */
+    public byte[] modifyGamePickerImageInstructions2(byte[] image) throws Exception {
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
-        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTION2);
+        swfEditor.setDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTION2, image);
+        return swfEditor.apply();
     }
 
     // GamePicker
