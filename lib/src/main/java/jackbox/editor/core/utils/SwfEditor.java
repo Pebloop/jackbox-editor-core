@@ -1,9 +1,22 @@
 package jackbox.editor.core.utils;
 
+import com.jpexs.decompiler.flash.AbortRetryIgnoreHandler;
+import com.jpexs.decompiler.flash.EventListener;
+import com.jpexs.decompiler.flash.ReadOnlyTagList;
 import com.jpexs.decompiler.flash.SWF;
+import com.jpexs.decompiler.flash.exporters.ImageExporter;
+import com.jpexs.decompiler.flash.exporters.modes.ImageExportMode;
+import com.jpexs.decompiler.flash.exporters.settings.ImageExportSettings;
+import com.jpexs.decompiler.flash.tags.DefineBitsLossless2Tag;
+import com.jpexs.decompiler.flash.tags.DefineBitsLosslessTag;
 import com.jpexs.decompiler.flash.tags.DefineEditTextTag;
+import com.jpexs.decompiler.flash.types.ALPHABITMAPDATA;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SwfEditor {
@@ -53,13 +66,74 @@ public class SwfEditor {
     public String getDefineEditTextTag(String id) {
         AtomicReference<String> res = new AtomicReference<>("");
         swf.getTags().forEach(tag -> {
-            if (tag.getTagName() != "DefineEditText") return;
+            if (!Objects.equals(tag.getTagName(), "DefineEditText")) return;
 
             if (tag.getName().equals(id)) {
                 res.set(((DefineEditTextTag) tag).initialText);
                 return;
             }
         });
+        return res.get();
+    }
+
+    public byte[] getDefineBitsLosslessTag(String id) {
+        AtomicReference<List<File>> files = new AtomicReference<>(Collections.emptyList());
+        AtomicReference<byte[]> res = new AtomicReference<>(new byte[0]);
+        swf.getTags().forEach(tag -> {
+            if (!Objects.equals(tag.getTagName(), "DefineBitsLossless")
+            && !Objects.equals(tag.getTagName(), "DefineBitsLossless2")) return;
+
+            System.out.println(tag.getName());
+            if (tag.getName().equals(id)) {
+
+                    // create png image
+                    ImageExporter exporter = new ImageExporter();
+                    ReadOnlyTagList r = new ReadOnlyTagList(Collections.singletonList(tag));
+                    ImageExportSettings settings = new ImageExportSettings(ImageExportMode.PNG);
+                    EventListener listener = new EventListener() {
+                        @Override
+                        public void handleExportingEvent(String s, int i, int i1, Object o) {
+                        }
+
+                        @Override
+                        public void handleExportedEvent(String s, int i, int i1, Object o) {
+                        }
+
+                        @Override
+                        public void handleEvent(String s, Object o) {
+                        }
+                    };
+                    AbortRetryIgnoreHandler handler = new AbortRetryIgnoreHandler() {
+                        @Override
+                        public int handle(Throwable throwable) {
+                            return AbortRetryIgnoreHandler.IGNORE_ALL;
+                        }
+
+                        @Override
+                        public AbortRetryIgnoreHandler getNewInstance() {
+                            return this;
+                        }
+                    };
+                    try {
+                        files.set(exporter.exportImages(handler,
+                                "tmp",
+                                r,
+                                settings,
+                                listener
+                                ));
+                    } catch (IOException | InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                return;
+            }
+        });
+        if (files.get().size() > 0) {
+            try {
+                res.set(new FileInputStream(files.get().get(0)).readAllBytes());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return res.get();
     }
 }

@@ -16,19 +16,40 @@ import java.io.*;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class is used to edit the core (main menu) part of Jackbox Party Pack 2
+ */
 public class Jackbox2CoreEditor {
     SWF swfGamePicker;
 
-    public Jackbox2CoreEditor(InputStream fileGamePicker) throws IOException, InterruptedException {
+    public Jackbox2CoreEditor() throws IOException, InterruptedException {
+    }
+
+    // GamePicker
+
+    /**
+     * Setup the GamePicker SWF file
+     * This file can be found at The Jackbox Party Pack 2/games/PartyPack/GamePicker.swf
+     *
+     * @param fileGamePicker The GamePicker SWF file
+     * @throws IOException          If an I/O error occurs
+     * @throws InterruptedException If the thread is interrupted
+     */
+    public void setSwfGamePicker(InputStream fileGamePicker) throws IOException, InterruptedException {
         this.swfGamePicker = new SWF(fileGamePicker, true);
     }
 
-    public String getData() throws Exception {
+    /**
+     * Get the GamePicker.swf editable data
+     *
+     * @return The data in a json format
+     */
+    public String getGamePickerData() throws Exception {
 
         JackBox2CoreForm form = new JackBox2CoreForm();
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
 
-        //Process all tags
+        //Process all text tags
         form.back = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.BACK);
         form.phoneOrTablet = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.PHONE_OR_TABLET);
         form.familyMode = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.FAMILY_MODE);
@@ -36,10 +57,9 @@ public class Jackbox2CoreEditor {
         form.audience = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.AUDIENCE);
         form.nonPlayerCanJoin = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.NON_PLAYER_CAN_JOIN);
         form.menuItem = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.MENU_ITEM);
-        form.close = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.CLOSE);
+        form.close = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.CLOSE[0]);
         form.on = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.ON);
         form.off = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.OFF);
-
         form.volumeControl = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.VOLUME_CONTROL[0]);
         form.audienceMode = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.AUDIENCE_MODE[0]);
         form.audienceTimer = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.GamePicker.AUDIENCE_TIMER[0]);
@@ -63,7 +83,13 @@ public class Jackbox2CoreEditor {
         return json;
     }
 
-    public byte[] modifyData(String json) throws Exception {
+    /**
+     * Modify the GamePicker.swf file
+     *
+     * @param json The data in a json format
+     * @return The modified file
+     */
+    public byte[] modifyGamePickerData(String json) throws Exception {
         JackBox2CoreForm form = new ObjectMapper().readValue(json, JackBox2CoreForm.class);
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
 
@@ -75,7 +101,7 @@ public class Jackbox2CoreEditor {
         swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.AUDIENCE, form.audience);
         swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.NON_PLAYER_CAN_JOIN, form.nonPlayerCanJoin);
         swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.MENU_ITEM, form.menuItem);
-        swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.CLOSE, form.close);
+        swfEditor.setDefineEditTextTags(Jackbox2CoreIds.GamePicker.CLOSE, form.close);
         swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.ON, form.on);
         swfEditor.setDefineEditTextTag(Jackbox2CoreIds.GamePicker.OFF, form.off);
 
@@ -88,4 +114,21 @@ public class Jackbox2CoreEditor {
         //Save SWF
         return swfEditor.apply();
     }
+
+    public byte[] getGamePickerImageSettings() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_SETTINGS);
+    }
+
+    public byte[] getGamePickerImageInstructions() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTIONS);
+    }
+
+    public byte[] getGamePickerImageInstructions2() throws Exception {
+        SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
+        return swfEditor.getDefineBitsLosslessTag(Jackbox2CoreIds.GamePicker.IMAGE_INSTRUCTION2);
+    }
+
+    // GamePicker
 }

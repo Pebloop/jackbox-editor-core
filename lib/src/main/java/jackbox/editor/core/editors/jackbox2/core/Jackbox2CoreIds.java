@@ -11,7 +11,7 @@ public class Jackbox2CoreIds {
         public static final String AUDIENCE = "DefineEditText (45)";
         public static final String NON_PLAYER_CAN_JOIN = "DefineEditText (46)";
         public static final String MENU_ITEM = "DefineEditText (65)";
-        public static final String CLOSE = "DefineEditText (147)";
+        public static final String[] CLOSE = new String[]{"DefineEditText (147)", "DefineEditText (125)"};
         public static final String ON = "DefineEditText (99)";
         public static final String OFF = "DefineEditText (100)";
         public static final String[] VOLUME_CONTROL = new String[]{
@@ -60,5 +60,8 @@ public class Jackbox2CoreIds {
 
         };
 
+        public static final String IMAGE_SETTINGS = "DefineBitsLossless2 (71)";
+        public static final String IMAGE_INSTRUCTIONS = "DefineBitsLossless2 (145)";
+        public static final String IMAGE_INSTRUCTION2 = "DefineBitsLossless2 (151)";
     }
 }
