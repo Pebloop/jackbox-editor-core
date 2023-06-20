@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="ffdec_lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/ffdec_lib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/avi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/cmykjpeg.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/ddsreader.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/flashdebugger.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/gif.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/gnujpdf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/jlayer-1.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/jna-3.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/jna-platform-3.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/jpacker.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/LZMA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/nellymoser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/sfntly.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/tga.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/ttf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/vlcj-4.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ffdec/vlcj-natives-4.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
