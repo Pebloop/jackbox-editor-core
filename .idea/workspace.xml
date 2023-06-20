@@ -5,36 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7d5c317-0cfd-4d52-b94e-10a9efcb3fc1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ffdec_lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/avi.montemedia.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/ddsreader.license" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/gif.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/jlayer.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/jna.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/jpacker.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/nellymoser.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/sfntly.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/tga.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/ttf.doubletype.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/libs/ffdec/ttf.fontastic.license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/Library.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/test/java/jackbox/editor/core/LibraryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/JackBoxGames.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/JackBox2CoreForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreEditor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/jackbox2/core/Jackbox2CoreIds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/Library.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/test/java/jackbox/editor/core/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/test/java/jackbox/editor/core/LibraryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +35,9 @@
         <task path="~\Documents\GitRepo\jackbox\jackbox-editor-core">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/lib">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -73,6 +56,14 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -95,7 +86,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Tempo/Documents/GitRepo/jackbox/jackbox-editor-core/build.gradle.kts",
+    "last_opened_file_path": "C:/Users/Tempo/Documents/GitRepo/jackbox/jackbox-editor-api/build.gradle.kts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,7 +104,7 @@
       <recent name="C:\Users\Tempo\Documents\GitRepo\jackbox\jackbox-editor-core\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.build">
+  <component name="RunManager" selected="Gradle.jar">
     <configuration name="build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -244,7 +235,7 @@
       <workItem from="1687244861524" duration="81000" />
       <workItem from="1687244964779" duration="556000" />
       <workItem from="1687245661558" duration="356000" />
-      <workItem from="1687246038476" duration="377000" />
+      <workItem from="1687246038476" duration="14736000" />
     </task>
     <servers />
   </component>
