@@ -1,6 +1,6 @@
-package jackbox.editor.core.editors.jackbox2.core;
+package jackbox.editor.core.editors.jackbox2.core.form;
 
-public class JackBox2CoreForm {
+public class JackBox2CoreGamePickerForm {
     public String back = "";
     public String phoneOrTablet = "";
     public String familyMode = "";

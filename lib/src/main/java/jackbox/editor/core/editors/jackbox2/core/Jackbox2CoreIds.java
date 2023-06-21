@@ -64,4 +64,25 @@ public class Jackbox2CoreIds {
         public static final String IMAGE_INSTRUCTIONS = "DefineBitsLossless2 (145)";
         public static final String IMAGE_INSTRUCTION2 = "DefineBitsLossless2 (151)";
     }
+
+    public class PauseDialog {
+
+        public static final String[] YES = {
+                "DefineEditText (37)",
+                "DefineEditText (28)",
+                "DefineEditText (27)",
+                "DefineEditText (26)",
+                "DefineEditText (13)",
+        };
+        public static final String[] NO = {
+                "DefineEditText (14)",
+                "DefineEditText (30)",
+                "DefineEditText (31)",
+                "DefineEditText (32)",
+                "DefineEditText (38)",
+        };
+        public static final String ARE_YOU_SURE_EXIT = "DefineText (21)";
+        public static final String CURRENT_PROGRESS_LOST = "DefineEditText (22)";
+        public static final String CHOOSE_ON_YOUR_DEVICE = "DefineEditText (35)";
+    }
 }

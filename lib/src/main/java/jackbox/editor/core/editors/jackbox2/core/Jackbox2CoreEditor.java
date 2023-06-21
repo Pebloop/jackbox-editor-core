@@ -5,22 +5,18 @@ package jackbox.editor.core.editors.jackbox2.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jpexs.decompiler.flash.SWF;
-import com.jpexs.decompiler.flash.abc.ScriptPack;
-import com.jpexs.decompiler.flash.abc.types.ScriptInfo;
-import com.jpexs.decompiler.flash.tags.DefineEditTextTag;
-import com.jpexs.decompiler.flash.tags.Tag;
-import com.jpexs.decompiler.flash.tags.base.TextTag;
+import jackbox.editor.core.editors.jackbox2.core.form.JackBox2CoreGamePickerForm;
+import jackbox.editor.core.editors.jackbox2.core.form.JackBox2CorePauseDialogForm;
 import jackbox.editor.core.utils.SwfEditor;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * This class is used to edit the core (main menu) part of Jackbox Party Pack 2
  */
 public class Jackbox2CoreEditor {
     SWF swfGamePicker;
+    SWF swfPauseDialog;
 
     public Jackbox2CoreEditor() throws IOException, InterruptedException {
     }
@@ -40,13 +36,25 @@ public class Jackbox2CoreEditor {
     }
 
     /**
+     * Setup the PauseDialog SWF file
+     * This file can be found at The Jackbox Party Pack 2/PauseDialog.swf
+     *
+     * @param filePauseDialog The GamePicker SWF file
+     * @throws IOException          If an I/O error occurs
+     * @throws InterruptedException If the thread is interrupted
+     */
+    public void setSwfPauseDialog(InputStream filePauseDialog) throws IOException, InterruptedException {
+        this.swfPauseDialog = new SWF(filePauseDialog, true);
+    }
+
+    /**
      * Get the GamePicker.swf editable data
      *
      * @return The data in a json format
      */
     public String getGamePickerData() throws Exception {
 
-        JackBox2CoreForm form = new JackBox2CoreForm();
+        JackBox2CoreGamePickerForm form = new JackBox2CoreGamePickerForm();
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
 
         //Process all text tags
@@ -120,7 +128,7 @@ public class Jackbox2CoreEditor {
      * @return The modified file
      */
     public byte[] modifyGamePickerData(String json) throws Exception {
-        JackBox2CoreForm form = new ObjectMapper().readValue(json, JackBox2CoreForm.class);
+        JackBox2CoreGamePickerForm form = new ObjectMapper().readValue(json, JackBox2CoreGamePickerForm.class);
         SwfEditor swfEditor = new SwfEditor(this.swfGamePicker);
 
         //Process all tags
@@ -181,5 +189,46 @@ public class Jackbox2CoreEditor {
         return swfEditor.apply();
     }
 
-    // GamePicker
+    // Pause dialog
+    /**
+     * Get the PauseDialog.swf editable data
+     *
+     * @return The data in a json format
+     */
+    public String getPauseDialogData() throws Exception {
+        JackBox2CorePauseDialogForm form = new JackBox2CorePauseDialogForm();
+        SwfEditor swfEditor = new SwfEditor(this.swfPauseDialog);
+
+        //Get texts
+        form.yes = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.PauseDialog.YES[0]);
+        form.no = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.PauseDialog.NO[0]);
+        form.are_you_sure_exit = swfEditor.getDefineTextTag(Jackbox2CoreIds.PauseDialog.ARE_YOU_SURE_EXIT);
+        form.current_progress_lost = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.PauseDialog.CURRENT_PROGRESS_LOST);
+        form.choose_on_your_device = swfEditor.getDefineEditTextTag(Jackbox2CoreIds.PauseDialog.CHOOSE_ON_YOUR_DEVICE);
+
+        return new ObjectMapper().writeValueAsString(form);
+    }
+
+    /**
+     * Modify the PauseDialog.swf file
+     *
+     * @param json The data in a json format
+     * @return The modified file
+     */
+    public byte[] modifyPauseDialogData(String json) throws Exception {
+        JackBox2CorePauseDialogForm form = new ObjectMapper().readValue(json, JackBox2CorePauseDialogForm.class);
+        SwfEditor swfEditor = new SwfEditor(this.swfPauseDialog);
+
+        //Process all tags
+        swfEditor.setDefineEditTextTags(Jackbox2CoreIds.PauseDialog.YES, form.yes);
+        swfEditor.setDefineEditTextTags(Jackbox2CoreIds.PauseDialog.NO, form.no);
+        swfEditor.setDefineTextTag(Jackbox2CoreIds.PauseDialog.ARE_YOU_SURE_EXIT, form.are_you_sure_exit);
+        swfEditor.setDefineEditTextTag(Jackbox2CoreIds.PauseDialog.CURRENT_PROGRESS_LOST, form.current_progress_lost);
+        swfEditor.setDefineEditTextTag(Jackbox2CoreIds.PauseDialog.CHOOSE_ON_YOUR_DEVICE, form.choose_on_your_device);
+
+        //Save SWF
+        return swfEditor.apply();
+    }
+
+
 }

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7d5c317-0cfd-4d52-b94e-10a9efcb3fc1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/form/JackBox2CorePauseDialogForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/JackBox2CoreForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/form/JackBox2CoreGamePickerForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreIds.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/editors/jackbox2/core/Jackbox2CoreIds.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/utils/SwfEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main/java/jackbox/editor/core/utils/SwfEditor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +98,9 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tempo\Documents\GitRepo\jackbox\jackbox-editor-core\lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="jackbox.editor.core.editors.jackbox2.core.form" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.jar">
@@ -229,7 +235,8 @@
       <workItem from="1687244964779" duration="556000" />
       <workItem from="1687245661558" duration="356000" />
       <workItem from="1687246038476" duration="22352000" />
-      <workItem from="1687285693293" duration="7055000" />
+      <workItem from="1687285693293" duration="7333000" />
+      <workItem from="1687360927996" duration="7895000" />
     </task>
     <servers />
   </component>

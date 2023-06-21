@@ -11,7 +11,10 @@ import com.jpexs.decompiler.flash.importers.ImageImporter;
 import com.jpexs.decompiler.flash.tags.DefineBitsLossless2Tag;
 import com.jpexs.decompiler.flash.tags.DefineBitsLosslessTag;
 import com.jpexs.decompiler.flash.tags.DefineEditTextTag;
+import com.jpexs.decompiler.flash.tags.DefineTextTag;
 import com.jpexs.decompiler.flash.tags.base.ImageTag;
+import com.jpexs.decompiler.flash.tags.base.MissingCharacterHandler;
+import com.jpexs.decompiler.flash.tags.text.TextParseException;
 import com.jpexs.decompiler.flash.types.ALPHABITMAPDATA;
 
 import java.io.*;
@@ -52,6 +55,28 @@ public class SwfEditor {
         });
     }
 
+    public void setDefineTextTag(String id, List<String> text) {
+        swf.getTags().forEach(tag -> {
+            if (tag.getTagName() != "DefineText") return;
+
+            if (tag.getName().equals(id)) {
+                DefineTextTag defineTextTag = (DefineTextTag) tag;
+                MissingCharacterHandler missingCharacterHandler = new MissingCharacterHandler();
+                String[] texts = new String[text.size()];
+                for (int j = 0; j < text.size(); j++) {
+                    texts[j] = text.get(j);
+                }
+                try {
+                    String formattedText = defineTextTag.getFormattedText(true).text;
+                    defineTextTag.setFormattedText(missingCharacterHandler, formattedText, texts);
+                } catch (TextParseException e) {
+                    throw new RuntimeException(e);
+                }
+                tag.setModified(true);
+            }
+        });
+    }
+
     public void setDefineEditTextTags(String[] ids, String text) {
         swf.getTags().forEach(tag -> {
             if (tag.getTagName() != "DefineEditText") return;
@@ -72,6 +97,20 @@ public class SwfEditor {
 
             if (tag.getName().equals(id)) {
                 res.set(((DefineEditTextTag) tag).initialText);
+                return;
+            }
+        });
+        return res.get();
+    }
+
+    public List<String> getDefineTextTag(String id) {
+        AtomicReference<List<String>> res = new AtomicReference<>(Collections.emptyList());
+        swf.getTags().forEach(tag -> {
+            if (!Objects.equals(tag.getTagName(), "DefineText")) return;
+
+            if (tag.getName().equals(id)) {
+                DefineTextTag defineTextTag = (DefineTextTag) tag;
+                res.set(defineTextTag.getTexts());
                 return;
             }
         });
