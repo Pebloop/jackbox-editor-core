@@ -5,8 +5,10 @@ package jackbox.editor.core.editors.jackbox2.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jpexs.decompiler.flash.SWF;
+import jackbox.editor.core.editors.jackbox2.core.form.JackBox2CoreContentForm;
 import jackbox.editor.core.editors.jackbox2.core.form.JackBox2CoreGamePickerForm;
 import jackbox.editor.core.editors.jackbox2.core.form.JackBox2CorePauseDialogForm;
+import jackbox.editor.core.editors.jackbox2.core.models.ContentJsonModel;
 import jackbox.editor.core.utils.SwfEditor;
 
 import java.io.*;
@@ -17,6 +19,7 @@ import java.io.*;
 public class Jackbox2CoreEditor {
     SWF swfGamePicker;
     SWF swfPauseDialog;
+    ContentJsonModel jsonContent;
 
     public Jackbox2CoreEditor() throws IOException, InterruptedException {
     }
@@ -36,10 +39,23 @@ public class Jackbox2CoreEditor {
     }
 
     /**
+     * Setup the content JSON file
+     * This file can be found at Jackbox Party Pack 2/games/PartyPack/content.json
+     *
+     * @param fileContent The content json file
+     * @throws IOException          If an I/O error occurs
+     * @throws InterruptedException If the thread is interrupted
+     */
+    public void setJsonContent(InputStream fileContent) throws IOException, InterruptedException {
+        byte[] bytes = fileContent.readAllBytes();
+        this.jsonContent = new ObjectMapper().readValue(bytes, ContentJsonModel.class);
+    }
+
+    /**
      * Setup the PauseDialog SWF file
      * This file can be found at The Jackbox Party Pack 2/PauseDialog.swf
      *
-     * @param filePauseDialog The GamePicker SWF file
+     * @param filePauseDialog The PauseDialog SWF file
      * @throws IOException          If an I/O error occurs
      * @throws InterruptedException If the thread is interrupted
      */
@@ -228,6 +244,55 @@ public class Jackbox2CoreEditor {
 
         //Save SWF
         return swfEditor.apply();
+    }
+
+    // content
+    /**
+     * Get the content.json editable data
+     *
+     * @return The data in a json format
+     */
+    public String getContentData() throws Exception {
+        JackBox2CoreContentForm form = new JackBox2CoreContentForm();
+
+        //Get texts
+        form.fibbage2Players = this.jsonContent.games[0].players;
+        form.fibbage2Description = this.jsonContent.games[0].description;
+        form.earwaxPlayers = this.jsonContent.games[1].players;
+        form.earwaxDescription = this.jsonContent.games[1].description;
+        form.bidiotsPlayers = this.jsonContent.games[2].players;
+        form.bidiotsDescription = this.jsonContent.games[2].description;
+        form.quiplashPlayers = this.jsonContent.games[3].players;
+        form.quiplashDescription = this.jsonContent.games[3].description;
+        form.bombCorpPlayers = this.jsonContent.games[4].players;
+        form.bombCorpDescription = this.jsonContent.games[4].description;
+
+        return new ObjectMapper().writeValueAsString(form);
+    }
+
+    /**
+     * Modify the content.json file
+     *
+     * @param json The data in a json format
+     * @return The modified file
+     */
+    public byte[] modifyContentData(String json) throws Exception {
+        JackBox2CoreContentForm form = new ObjectMapper().readValue(json, JackBox2CoreContentForm.class);
+
+        //Process all tags
+        this.jsonContent.games[0].players = form.fibbage2Players;
+        this.jsonContent.games[0].description = form.fibbage2Description;
+        this.jsonContent.games[1].players = form.earwaxPlayers;
+        this.jsonContent.games[1].description = form.earwaxDescription;
+        this.jsonContent.games[2].players = form.bidiotsPlayers;
+        this.jsonContent.games[2].description = form.bidiotsDescription;
+        this.jsonContent.games[3].players = form.quiplashPlayers;
+        this.jsonContent.games[3].description = form.quiplashDescription;
+        this.jsonContent.games[4].players = form.bombCorpPlayers;
+        this.jsonContent.games[4].description = form.bombCorpDescription;
+
+        //Save SWF
+        return new ObjectMapper().writeValueAsString(this.jsonContent).getBytes();
     }
 
 
